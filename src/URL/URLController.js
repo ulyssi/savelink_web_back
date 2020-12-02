@@ -53,7 +53,7 @@ router.post('/urlraw', function (req, res) {
 });
 router.post('/urlraw_key', function (req, res) {
 
-    var c=checkpassword(req,res);
+    var c=user.checkpassword(req,res);
     if ( c !== 0){
         console.log('crtl ko');
         res.status("400");
@@ -71,7 +71,7 @@ router.post('/urlraw_key', function (req, res) {
 });
 
 router.post('/create', function (req, res) {
-    var c=checkpassword(req,res);
+    var c=user.checkpassword(req,res);
     console.log(req.body.password)
     if ( c !== 0){
         console.log('crtl ko');
@@ -94,7 +94,7 @@ router.post('/create', function (req, res) {
 
 
 router.post('/update', function (req, res) {
-    var c=checkpassword(req,res);
+    var c=user.checkpassword(req,res);
     if ( c !== 0){
         console.log('crtl ko');
         res.status("400");
@@ -115,7 +115,7 @@ router.post('/update', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
-    var c=checkpassword(req,res);
+    var c=user.checkpassword(req,res);
     if ( c !== 0){
         console.log('crtl ko');
         res.status("400");
@@ -134,7 +134,7 @@ router.post('/delete', function (req, res) {
 
 router.post('/deletebyshortcut', function (req, res) {
  
-    var c=checkpassword(req,res);
+    var c=user.checkpassword(req,res);
     if ( c !== 0){
         console.log('crtl ko');
         res.status("400");
