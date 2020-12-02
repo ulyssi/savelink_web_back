@@ -27,7 +27,7 @@ checkpassword: function checkpassword(req, res){
     this.get_pass(this.get_password);
     var c=1; 
     if(!req.body.id || !req.body.password){
-        console.log("no id");
+        //console.log("no id");
     } else {
        Users.filter(function(user){
           if(user.id === req.body.id){
