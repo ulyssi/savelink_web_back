@@ -5,7 +5,7 @@ services: # configuring each container
   db: # name of our mysql container
     image: jsurf/rpi-mariadb  # which image to pull, in this case specifying v. 5.7
     volumes: # data to map to the container
-          - /media/ext_drive/01_shared/02_dev/006/02_database:/var/lib/mysql
+          - /media/ext_drive/01_shared/m_g_env/m_g_boite/02_database:/var/lib/mysql
     restart: always # always restart the container after reboot
     environment: # environment variables -- mysql options in this case
       MYSQL_ROOT_PASSWORD: m_g_pass_mysql_root_password
@@ -19,7 +19,7 @@ services: # configuring each container
         - db
     image: node:11
     volumes:
-      - /media/ext_drive/01_shared/02_dev/006/03_src/:/usr/src/service/
+      - /media/ext_drive/01_shared/m_g_env/m_g_boite/03_src/:/usr/src/service/
     restart: always # always restart the container after reboot
     working_dir: /usr/src/service/
     command: npm start
