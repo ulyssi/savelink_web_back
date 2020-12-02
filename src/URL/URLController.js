@@ -12,7 +12,7 @@ var user = require('../users/users');
 router.post('/getall', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;
@@ -35,7 +35,7 @@ router.post('/urlraw', function (req, res) {
     
     var c=user.checkpassword(req,res);
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;
@@ -55,7 +55,7 @@ router.post('/urlraw_key', function (req, res) {
 
     var c=user.checkpassword(req,res);
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;
@@ -74,7 +74,7 @@ router.post('/create', function (req, res) {
     var c=user.checkpassword(req,res);
     console.log(req.body.password)
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;
@@ -96,7 +96,7 @@ router.post('/create', function (req, res) {
 router.post('/update', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;
@@ -117,7 +117,7 @@ router.post('/update', function (req, res) {
 router.post('/delete', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;
@@ -136,7 +136,7 @@ router.post('/deletebyshortcut', function (req, res) {
  
     var c=user.checkpassword(req,res);
     if ( c !== 0){
-        console.log('crtl ko');
+      
         res.status("400");
        res.send("Invalid details!");
        return;

@@ -19,3 +19,5 @@ f_load_config_file /media/ext_network/01_shared/03_jenkins/current/workspace/043
  
 
 docker-compose up -d 
+[ $? -ne 0 ] && exit 1;
+docker logs  savelink_back_node_1 
