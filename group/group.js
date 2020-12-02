@@ -6,10 +6,10 @@ var conf  = require('../conf/config');
   
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host: conf.m_g_host_mysql,
-  user:  conf.m_g_mysql_user,
-  password: conf.m_g_mysql_password,
-  database: conf.m_g_mysql_database,
+  host: m_i_host_mysql,
+  user:  m_i_mysql_user,
+  password: m_i_mysql_password,
+  database: m_i_mysql_database,
 });
 
 connection.connect(function(err){
