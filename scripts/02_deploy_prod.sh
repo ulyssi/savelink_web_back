@@ -10,8 +10,8 @@ rm -rf /media/ext_drive/01_shared/01_prod/006/03_src/*
 cp -rv /media/ext_network/01_shared/02_dev/006/03_src/* .
 chmod -R a+rw /media/ext_drive/01_shared/01_prod/006/03_src
 
-cp -rfi /media/ext_network/01_shared/03_jenkins/current/workspace/018_deploy_savelink_back_dev/docker-compose.yml .
-cp -rfi /media/ext_network/01_shared/03_jenkins/current/workspace/018_deploy_savelink_back_dev/config.js conf/config.js
+cp  /media/ext_network/01_shared/03_jenkins/current/workspace/018_deploy_savelink_back_dev/docker-compose.yml .
+cp  /media/ext_network/01_shared/03_jenkins/current/workspace/018_deploy_savelink_back_dev/config.js conf/config.js
 source /media/ext_network/04_softwares/01_sources/alias/src/commons/commons_functions.sh
 f_load_config_file /media/ext_network/01_shared/03_jenkins/current/workspace/043_update_password/01_savelink_database/02_password_prod.txt docker-compose.yml
 f_load_config_file /media/ext_network/01_shared/03_jenkins/current/workspace/043_update_password/01_savelink_database/02_password_prod.txt conf/config.js
