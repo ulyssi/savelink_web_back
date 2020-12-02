@@ -1,0 +1,24 @@
+{
+  "name": "savelink_back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.4",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^3.0.1",
+    "express-session": "^1.17.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "redis": "^3.0.2",
+    "wget-improved": "^3.2.1"
+  }
+}

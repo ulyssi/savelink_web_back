@@ -1,0 +1,31 @@
+# docker-compose.yaml
+version: '2' # version of docker-compose to use
+
+services: # configuring each container
+  db: # name of our mysql container
+    image: jsurf/rpi-mariadb  # which image to pull, in this case specifying v. 5.7
+    volumes: # data to map to the container
+          - /media/ext_drive/01_shared/02_dev/006/02_database:/var/lib/mysql
+    restart: always # always restart the container after reboot
+    environment: # environment variables -- mysql options in this case
+      MYSQL_ROOT_PASSWORD: m_g_pass_mysql_root_password
+      MYSQL_DATABASE: m_g_pass_mysql_database
+      MYSQL_USER: m_g_pass_mysql_user
+      MYSQL_PASSWORD: m_g_pass_mysql_password
+    ports :
+      - m_g_pass_mysql_expose_port:3306
+  node:
+    depends_on: # container dependencies that need to be running first
+        - db
+    image: node:11
+    volumes:
+      - /media/ext_drive/01_shared/02_dev/006/03_src/:/usr/src/service/
+    restart: always # always restart the container after reboot
+    working_dir: /usr/src/service/
+    command: npm start
+    ports :
+        - m_g_pass_node_expose_port:3000
+networks:
+  default:
+    external:
+      name: my_bridge_savelink
