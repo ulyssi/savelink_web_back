@@ -4,44 +4,21 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 var URL = require('./URL');
+var user = require('../users/users');
+    
 
 
-
-
-function  checkpassword(req, res){
-   return 0 ;    
-    var c=1; 
-    if(!req.body.id || !req.body.password){
-        console.log("no id");
-    } else {
-       
-       Users.filter(function(user){
-          if(user.id === req.body.id){
-            if(user.password === req.body.password){   
-                    console.log('User ok');
-               c=0;
-            }
-          }
-          
-       });
-      
-       //res.redirect('/protected_page');
-    }
-    return c;
- };
-
-
+ // Gestion des URLS.
 router.post('/getall', function (req, res) {
-    let  c=checkpassword(req,res);
-    console.log(c);
+    var c=user.checkpassword(req,res);
     if ( c !== 0){
         console.log('crtl ko');
         res.status("400");
        res.send("Invalid details!");
        return;
     }
-  
     URL.geturl(function (err, rows) {
+    
         if (err) {
             res.status(400).json(err);
         }
@@ -49,11 +26,14 @@ router.post('/getall', function (req, res) {
             res.json(rows);
         }
     });
+    
 });
 
 
+
 router.post('/urlraw', function (req, res) {
-    var c=checkpassword(req,res);
+    
+    var c=user.checkpassword(req,res);
     if ( c !== 0){
         console.log('crtl ko');
         res.status("400");
@@ -69,6 +49,7 @@ router.post('/urlraw', function (req, res) {
             res.json(rows);
         }
     });
+    
 });
 router.post('/urlraw_key', function (req, res) {
 

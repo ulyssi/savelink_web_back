@@ -1,29 +1,9 @@
 var wget2 = require('wget-improved');
-var conf  = require('../conf/config');
+require('../mysql/mysql');
 
-const fs = require('fs')
-
-  
-var mysql    = require('mysql');
-var connection = mysql.createConnection({
-  host: m_i_host_mysql,
-  user:  m_i_mysql_user,
-  password: m_i_mysql_password,
-  database: m_i_mysql_database,
- 
-});
-
- 
-connection.connect(function(err){
-  if(err) throw err;
-if(!err) {
-    console.log("Database is connected ... [OK]");
-} else {
-    console.log("Error connecting database ... [KO]"+err);
-}
-});
 
 var URL = {
+    
 
     geturl: function (callback) {
       qq=connection.query('SELECT *  from t_url order by shortcut', callback);
@@ -31,21 +11,12 @@ var URL = {
     },
 
     geturlraw: function (callback) {
-        console.log('URL  get raws ' );
-        connection.query("SELECT url,shortcut  FROM t_url", function (err, result, fields) {
-          if (err) throw err;
-        });
-      qq=connection.query('SELECT url,shortcut   from t_url', callback);
-      return qq;
+      return connection.query('SELECT url,shortcut   from t_url', callback);
+    
     },
 
     geturlraw_key: function (URL,callback) {
-        connection.query("SELECT url,shortcut  FROM t_url", function (err, result, fields) {
-          if (err) throw err;
-        });
-        console.log('GET : key '+ URL.shortcut);
-      qq=connection.query('SELECT url,shortcut   from t_url where shortcut=?',[URL.shortcut], callback);
-      return qq;
+      return connection.query('SELECT url,shortcut   from t_url where shortcut=?',[URL.shortcut], callback);
     },
 
     createurl: function (URL, callback) {
