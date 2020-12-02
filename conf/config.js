@@ -1,7 +1,7 @@
 m_g_mysql_database="m_g_pass_mysql_database"
 m_g_mysql_user="m_g_pass_mysql_user"
 m_g_mysql_password="m_g_pass_mysql_password"
-m_g_boite="006"
+m_g_boites="m_g_boite"
 m_g_pass_node_expose_port="3001"
 m_g_core_url="savelink.io"
 m_g_core_port="8484"
