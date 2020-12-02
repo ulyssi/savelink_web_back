@@ -19,4 +19,3 @@ f_load_config_file /media/ext_network/01_shared/03_jenkins/current/workspace/043
  
 
 docker-compose up -d 
-sudo umount /media/ext_network
