@@ -17,6 +17,7 @@ router.post('/getall', function (req, res) {
        res.send("Invalid details!");
        return;
     }
+    console.log(req.body);
       group.getgroup_user(req.body, function (err, rows) {
 
         if (err)  res.status(400).json(err);
