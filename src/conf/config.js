@@ -4,9 +4,9 @@ m_i_mysql_database="savelink"
 m_i_mysql_user="savelink_db_user"
 m_i_mysql_password="savelink_db_password"
 m_i_core_url="savelink.io"
-//dev
 m_i_core_port="8484"
 m_i_host_mysql="127.0.0.1"
+m_i_url_core='savelink.io:8383/savelink/reload.'
 //supprimer la suite pour travailler en dev le fichier de conf rec/prod est dans dev
 /*
 m_i_mysql_database="m_g_pass_mysql_database"

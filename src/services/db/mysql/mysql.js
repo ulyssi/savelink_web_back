@@ -1,4 +1,4 @@
-var conf  = require('../conf/config');
+var conf  = require('../../../conf/config');
 
 
 var mysql    = require('mysql');
