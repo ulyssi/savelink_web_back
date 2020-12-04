@@ -15,7 +15,7 @@ var URL = {
 
   createurl: function (URL, callback) {
     var conn = connection.query('Insert into t_url(url, shortcut,id_user) values(?, ?,1)', [URL.url, URL.shortcut], callback);
-    var source = 'http://'+m_i_url_core + URL.shortcut;
+    var source = 'http://'+m_i_url_core_reload + URL.shortcut;
     var outputFile = './tmp.html';
     try { wget2.download(source, outputFile);
     } catch (error) {console.error(error);}
@@ -24,7 +24,7 @@ var URL = {
 
   updateurl: function (URL, callback) {
     var conn = connection.query('UPDATE t_url set url=? WHERE shortcut = ?', [URL.url, URL.shortcut], callback);
-    var source = 'http://'+m_i_url_core + URL.shortcut;
+    var source = 'http://'+m_i_url_core_reload + URL.shortcut;
     var outputFile = 'tmp.html';
     try { wget2.download(source, outputFile);
     } catch (error) {console.error(error);}
@@ -38,7 +38,7 @@ var URL = {
 
   deleteurlbyshortcut: function (URL, callback) {
     var con = connection.query('DELETE from t_url WHERE shortcut = ?', [URL.shortcut], callback);
-    var source = 'http://'+m_i_url_core + URL.shortcut;
+    var source = 'http://'+m_i_url_core_reload + URL.shortcut;
     var outputFile = 'tmp.html';
     try { wget2.download(source, outputFile);
     } catch (error) {console.error(error);}
