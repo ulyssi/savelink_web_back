@@ -5,6 +5,8 @@ cp -r /media/ext_drive/01_shared/03_jenkins/current/workspace/018_deploy_savelin
 cd /tmp/savelink_back/
 npm i 
 cd /media/ext_drive/01_shared/02_dev/006/03_src
+docker logs clean save
+
 docker-compose stop
 sleep 5 
 rm -rf *
