@@ -14,8 +14,9 @@ var URL = {
   },
 
   createurl: function (body, callback) {
-    
-    var conn = connection.query("Insert into t_url(url, shortcut,id_user)   select ? as url , ? as shortcut, id_user   from t_user t  where t.username= ?", [body.url, body.shortcut, body.id], callback);
+    console.log(body);
+    console.log("Insert into t_url(url, shortcut,id_user)   select ? as url , ? as shortcut, id_user   from t_user t  where t.username= ?");
+    var conn = connection.query("Insert into t_url(url, shortcut,id_user)   select '?' as url , '?' as shortcut, id_user   from t_user t  where t.username='?'", [body.url.url, body.url.shortcut, body.id], callback);
     var source = 'http://'+m_i_url_core_reload + URL.shortcut;
     var outputFile = './tmp.html';
     try { wget2.download(source, outputFile);

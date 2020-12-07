@@ -19,6 +19,7 @@ function return_400(res,str_info){
 
 router.post('/getall_user', function (req, res) {
     var c=user.checkpassword(req,res);
+
     if ( c!==0) return return_400(res,"Invalid User/pass");     
     URL.geturl_user(req.body,function (err, rows) {
       if (err) return_400(res.status(400).json(err),"Database error")
@@ -49,7 +50,7 @@ router.post('/create', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c!==0) return return_400(res,"Invalid User/pass");    
    
-    URL.createurl(req.body.url,function (err, rows) {
+    URL.createurl(req.body,function (err, rows) {
       if (err) return_400(res.status(400).json(err),"Database error")
       else res.json(rows);
     });
