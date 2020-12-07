@@ -13,8 +13,9 @@ var URL = {
     return connection.query("SELECT url,concat(t.uuid,'.',shortcut)  as shortcut  from t_url u inner join t_user t on u.id_user = t.id_user  where shortcut=?", [body.shortcut], callback);
   },
 
-  createurl: function (URL, callback) {
-    var conn = connection.query('Insert into t_url(url, shortcut,id_user) values(?, ?,1)', [URL.url, URL.shortcut], callback);
+  createurl: function (body, callback) {
+    
+    var conn = connection.query("Insert into t_url(url, shortcut,id_user)   select ? as url , ? as shortcut, id_user   from t_user t  where t.username= ?", [body.url, body.shortcut, body.id], callback);
     var source = 'http://'+m_i_url_core_reload + URL.shortcut;
     var outputFile = './tmp.html';
     try { wget2.download(source, outputFile);
