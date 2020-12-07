@@ -2,15 +2,15 @@ var wget2 = require('wget-improved');
 require('./mysql/mysql');
 
 var URL = {
-  geturl: function (callback) {
-    return connection.query('SELECT *  from t_url order by shortcut', callback);
+  geturl_user: function (body,callback) {
+    return connection.query('SELECT *  from t_url  where id_user in(select id_user from t_user where username=?) order by shortcut ',[body.id], callback);
   },
 
   geturlraw: function (callback) {
-    return connection.query('SELECT url,shortcut   from t_url', callback);
+    return connection.query("SELECT url,concat(t.uuid,'.',shortcut) as shortcut from t_url u inner join t_user t on u.id_user = t.id_user;", callback);
   },
-  geturlraw_key: function (URL, callback) {
-    return connection.query('SELECT url,shortcut   from t_url where shortcut=?', [URL.shortcut], callback);
+  geturlraw_key: function (body, callback) {
+    return connection.query("SELECT url,concat(t.uuid,'.',shortcut)  as shortcut  from t_url u inner join t_user t on u.id_user = t.id_user  where shortcut=?", [body.shortcut], callback);
   },
 
   createurl: function (URL, callback) {
