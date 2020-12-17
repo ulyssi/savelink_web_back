@@ -2,6 +2,10 @@ require('./mysql/mysql');
 
 Users = [];
 var user = {
+    init: function init(){
+        this.get_pass(this.get_password);
+    },
+
     create_user: function get_pass(callback) {
         connection.query('', callback);
     },
