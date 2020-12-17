@@ -11,9 +11,6 @@ var router = express.Router();
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
-function init() {
-  user.get_pass(this.get_password);
-}
 
 function return_400(res,str_info){
        res.status("400");
