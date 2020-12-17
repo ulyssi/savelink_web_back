@@ -7,16 +7,15 @@ var url_group = {
     },
 
     geturl_groupraw: function (callback) {
-      return connection.query('SELECT url_group,shortcut   from t_url_group', callback);
+      return connection.query('SELECT url,shortcut   from t_url_group', callback);
     },
     geturl_groupraw_key: function (url_group,callback) {
-      return connection.query('SELECT url_group,shortcut   from t_url_group where shortcut=?',[url_group.shortcut], callback);
+      return connection.query('SELECT url,shortcut   from t_url_group where shortcut=?',[url_group.shortcut], callback);
     },
 
     createurl_group: function (url_group, callback) {
-        var conn=connection.query('Insert into t_url_group(url_group, shortcut,id_user) values(?, ?,1)', [url_group.url_group, url_group.shortcut], callback);
+        var conn=connection.query('Insert into t_url_group(url, shortcut,id_group)  select ? as url , ? as shortcut, idt_group  from t_group  t  where t.group_name=?', [url_group.url, url_group.shortcut,url_group.group], callback);
          var source = 'http://savelink.io:8383/savelink/reload.'+url_group.shortcut;
-         console.log('url_group UPDATE REDIS: ' + source);
       var outputFile = './tmp.html';
       try {
         wget2.download(source, outputFile);
@@ -26,14 +25,14 @@ var url_group = {
       }
         return conn;
     },
+
     updateurl_group: function (url_group, callback) {
-      console.log('UPDATE : url_group : ' + url_group.url_group +' GO : '+ url_group.shortcut);
+      console.log('UPDATE ??: url_group : ' + url_group.url +' GO : '+ url_group.shortcut);
       
-     
-      var conn=connection.query('UPDATE t_url_group set url_group=? WHERE shortcut = ?', [url_group.url_group,url_group.shortcut], callback);
-      
+      var conn=connection.query('UPDATE  t_url_group set url=? where shortcut=? AND id_group in ( select idt_group  from t_group  t  where t.group_name=?)', 
+      [url_group.url, url_group.shortcut,url_group.group], callback);
+         
       var source = 'http://savelink.io:8383/savelink/reload.'+url_group.shortcut;
-      console.log('url_group UPDATE REDIS: ' + source);
       var outputFile = 'tmp.html';
       try {
         wget2.download(source, outputFile);
@@ -50,10 +49,9 @@ var url_group = {
         return connection.query('DELETE from t_url_group WHERE id = ?', [url_group.id], callback);
     },
     deleteurl_groupbyshortcut: function (url_group, callback) {
-      console.log('delete : GO : '+ url_group.shortcut);
-      var con= connection.query('DELETE from t_url_group WHERE shortcut = ?', [url_group.shortcut], callback);
+      var conn=connection.query('DELETE from t_url_group where shortcut=? AND id_group in ( select idt_group  from t_group  t  where t.group_name=?)', 
+      [url_group.shortcut,url_group.group], callback);
       var source = 'http://savelink.io:8383/savelink/reload.'+url_group.shortcut;
-      console.log('url_group UPDATE REDIS: ' + source);
       var outputFile = 'tmp.html';
       try {
         wget2.download(source, outputFile);
@@ -61,7 +59,7 @@ var url_group = {
        } catch (error) {
           console.error(error);
       }
-      return con
+      return conn;
     }
 
 
