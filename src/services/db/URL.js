@@ -43,11 +43,12 @@ var URL = {
   deleteurlbyshortcut: function (URL, callback) {
     var con = connection.query('DELETE from t_url WHERE shortcut = ?', [URL.shortcut], callback);
     var source = 'http://'+m_i_url_core_reload
+    console.log(source);
     // + URL.shortcut;
     var outputFile = 'tmp.html';
     try { wget2.download(source, outputFile);
     } catch (error) {console.error(error);}
-    return conn;
+    return con;
   }
 
 }
