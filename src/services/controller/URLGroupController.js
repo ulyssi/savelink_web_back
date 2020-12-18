@@ -17,29 +17,29 @@ function return_400(res,str_info){
        res.send(str_info);
 }
 
-router.post('/getall', function (req, res) {
+router.post('/geturl_groupuser', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c!==0) return return_400(res,"Invalid User/pass");     
-    url_group.geturl_group(function (err, rows) {
+    url_group.geturl_groupuser(req.body,function (err, rows) {
       if (err) return_400(res.status(400).json(err),"Database error")
       else res.json(rows);
     });
 });
 
-router.post('/getgroupraw', function (req, res) {
+router.post('/geturl_groupuser_raw', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c!==0) return return_400(res,"Invalid User/pass");      
-    url_group.geturl_groupraw(function (err, rows) {
+    url_group.geturl_groupuser_raw(req.body,function (err, rows) {
       if (err) return_400(res.status(400).json(err),"Database error")
       else res.json(rows);
     });
 });
 
-router.post('/getgroupraw_key', function (req, res) {
+router.post('/geturl_groupuserraw_key', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c!==0) return return_400(res,"Invalid User/pass");    
    
-    url_group.geturl_groupraw_key(req.body,function (err, rows) {
+    url_group.geturl_groupuserraw_key(req.body,function (err, rows) {
       if (err) return_400(res.status(400).json(err),"Database error")
       else res.json(rows);
     });

@@ -2,15 +2,15 @@ var wget2 = require('wget-improved');
 require('./mysql/mysql');
 
 var url_group = {
-    geturl_group: function (callback) {
-      return connection.query('SELECT *  from t_url_group order by shortcut', callback);
+    geturl_groupuser: function (req,callback) {
+      return connection.query('select * from  t_url_group a left join t_group b on a.id_group=b.idt_group where id_group in(select  idt_group  from  t_group_user where idt_user in (select id_user from t_user where username=?)) order by group_name,shortcut',[req.id], callback);
     },
 
-    geturl_groupraw: function (callback) {
-      return connection.query('SELECT url,shortcut   from t_url_group', callback);
+    geturl_groupuser_raw: function (req,callback) {
+      return connection.query('SELECT group_name,url,shortcut    from  t_url_group a left join t_group b on a.id_group=b.idt_group where id_group in(select  idt_group  from  t_group_user where idt_user in (select id_user from t_user where username=?)) order by group_name,shortcut',[req.id], callback);
     },
-    geturl_groupraw_key: function (url_group,callback) {
-      return connection.query('SELECT url,shortcut   from t_url_group where shortcut=?',[url_group.shortcut], callback);
+    geturl_groupuserraw_key: function (url_group,callback) {
+      return connection.query('SELECT group_name,url,shortcut   from  t_url_group a left join t_group b on a.id_group=b.idt_group where shortcut=? AND id_group in(select  idt_group  from  t_group_user where idt_user in (select id_user from t_user where username=?)) order by group_name,shortcut',[url_group.shortcut,url_group.id], callback);
     },
 
     createurl_group: function (url_group, callback) {
