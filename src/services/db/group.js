@@ -31,7 +31,7 @@ var group = {
     addusertogroup: function (group,callback) {
       
   
-         qq=connection.query(' Insert into t_group_user(idt_user, idt_group , priority ) select id_user,idt_group, ? as priority from t_user LEFT JOIN T_group ON TRUE where username=? AND group_name=?  ',[group.priority,group.id,group.group], callback);
+         qq=connection.query(' Insert into t_group_user(idt_user, idt_group , priority ) select id_user,idt_group, ? as priority from t_user LEFT JOIN t_group ON TRUE where username=? AND group_name=?  ',[group.priority,group.id,group.group], callback);
       return qq;
     },
 
