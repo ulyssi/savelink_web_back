@@ -2,6 +2,12 @@ var wget2 = require('wget-improved');
 require('./mysql/mysql');
 
 var url_group = {
+  
+
+    geturl_groupall_raw: function (req,callback) {
+    return connection.query("SELECT url,concat(uuid,'.',shortcut) as shortcut from ( select url as url,shortcut as shortcut,uuid as uuid from t_url_group u left join t_group_user g on g.idt_group=u.id_group left join t_user us on us.id_user=g.idt_user) as foo where shortcut!=''", callback);
+    },
+  
     geturl_groupuser: function (req,callback) {
       return connection.query('select * from  t_url_group a left join t_group b on a.id_group=b.idt_group where id_group in(select  idt_group  from  t_group_user where idt_user in (select id_user from t_user where username=?)) order by group_name,shortcut',[req.id], callback);
     },

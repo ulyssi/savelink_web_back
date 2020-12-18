@@ -17,6 +17,16 @@ function return_400(res,str_info){
        res.send(str_info);
 }
 
+
+router.post('/geturl_groupall_raw', function (req, res) {
+  var c=user.checkpassword(req,res);
+  if ( c!==0) return return_400(res,"Invalid User/pass");     
+  url_group.geturl_groupall_raw(req.body,function (err, rows) {
+    if (err) return_400(res.status(400).json(err),"Database error")
+    else res.json(rows);
+  });
+});
+
 router.post('/geturl_groupuser', function (req, res) {
     var c=user.checkpassword(req,res);
     if ( c!==0) return return_400(res,"Invalid User/pass");     
