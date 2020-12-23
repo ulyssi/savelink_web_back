@@ -3,7 +3,7 @@ require('./mysql/mysql');
 
 var URL = {
   geturl_user: function (body,callback) {
-    return connection.query('SELECT *  from t_url  where id_user in(select id_user from t_user where username=?) order by shortcut ',[body.id], callback);
+    return connection.query('SELECT t1.*,t2.uuid  from t_url t1  left join t_user  t2  on t1.id_user=t2.id_user  where t1.id_user in(select id_user from t_user where username=?)order by shortcut  ',[body.id], callback);
   },
 
   geturlraw: function (callback) {
