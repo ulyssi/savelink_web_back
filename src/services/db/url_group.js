@@ -9,7 +9,7 @@ var url_group = {
     },
   
     geturl_groupuser: function (req,callback) {
-      return connection.query('select * from  t_url_group a left join t_group b on a.id_group=b.idt_group where id_group in(select  idt_group  from  t_group_user where idt_user in (select id_user from t_user where username=?)) order by group_name,shortcut',[req.id], callback);
+      return connection.query('select group_name,group_visibility,id_group,id_url,c.idt_group,shortcut,url,uuid from  t_url_group a left join t_group b  on a.id_group=b.idt_group left join t_group_user c on b.idt_group=c.idt_group left join t_user d on d.id_user=c.idt_user  where username=? order by group_name,shortcut',[req.id], callback);
     },
 
     geturl_groupuser_raw: function (req,callback) {
