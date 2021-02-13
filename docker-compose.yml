@@ -13,7 +13,8 @@ services: # configuring each container
       MYSQL_USER: m_g_pass_mysql_user
       MYSQL_PASSWORD: m_g_pass_mysql_password
     ports :
-      - m_g_pass_mysql_expose_port:3306
+      - m_g_pass_mysql_expose_port:33063
+    restart: unless-stopped
   node:
     depends_on: # container dependencies that need to be running first
         - db
@@ -25,6 +26,7 @@ services: # configuring each container
     command: npm start
     ports :
         - m_g_pass_node_expose_port:3000
+    restart: unless-stopped
 networks:
   default:
     external:
